@@ -1,0 +1,34 @@
+<section>
+  <div class="container">
+    <ng-container *ngIf="bookmarksLoaded$ | async; else pending">
+      <ng-container *ngIf="bookmarks$ | async | groupBy:'group' as bookmarks; else noBookmarks">
+        <ul *ngFor="let bookmark of bookmarks | keyvalue">
+          <li>
+            <h3 class="_capitalize">{{bookmark.key}}</h3>
+            <ul>
+              <li class="bookmark-row" *ngFor="let item of bookmark.value">
+                <a mat-icon-button [routerLink]="['bookmark', item.id]">
+                  <mat-icon>keyboard_arrow_right</mat-icon>
+                </a>
+                <div class="bookmark-name">{{item.name}}</div>
+                <a [href]="item.url" class="url" target="_blank">{{item.url}}<mat-icon inline>open_in_new</mat-icon></a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </ng-container>
+    </ng-container>
+
+    <ng-template #noBookmarks>
+      <div class="no-bookmarks">There are no bookmarks yet</div>
+    </ng-template>
+
+    <ng-template #pending>
+      <div class="spinner-wrap"><mat-spinner diameter="44"></mat-spinner></div>
+    </ng-template>
+
+    <button class="add-bookmark" type="button" (click)="addBookmark()" mat-fab color="primary">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</section>

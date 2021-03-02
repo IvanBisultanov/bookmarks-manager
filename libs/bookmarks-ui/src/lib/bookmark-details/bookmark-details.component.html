@@ -1,0 +1,32 @@
+<section>
+  <div class="container">
+    <a class="back-btn" routerLink="/">
+      <mat-icon>keyboard_arrow_left</mat-icon>Back
+    </a>
+    <ng-container *ngIf="bookmark$ | async as bookmark; else noBookmark">
+      <dl>
+        <div class="dl-row">
+          <dt>Name:</dt>
+          <dd>{{bookmark.name}}</dd>
+        </div>
+        <div class="dl-row">
+          <dt>URL:</dt>
+          <dd>{{bookmark.url}}</dd>
+        </div>
+        <div class="dl-row">
+          <dt>Group:</dt>
+          <dd>{{bookmark.group}}</dd>
+        </div>
+        <div class="dl-row">
+          <dt>Created at:</dt>
+          <dd>{{bookmark.createdAt | date:'short'}}</dd>
+        </div>
+      </dl>
+
+      <button type="button" (click)="remove(bookmark.id)" mat-raised-button color="warn">Remove</button>
+    </ng-container>
+    <ng-template #noBookmark>
+      <div class="spinner-wrap"><mat-spinner diameter="44"></mat-spinner></div>
+    </ng-template>
+  </div>
+</section>

@@ -1,0 +1,30 @@
+dl {
+  display: table;
+  & > .dl-row {
+    display: table-row;
+  }
+}
+dt {
+  padding: 0 10px 10px 0;
+}
+dd {
+  padding: 0 0 10px;
+}
+dt,
+dd {
+  display: table-cell;
+}
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: #000;
+  mat-icon {
+    margin-right: 7px;
+  }
+}
+.spinner-wrap {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}

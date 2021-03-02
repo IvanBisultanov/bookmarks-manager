@@ -1,0 +1,46 @@
+<h1 mat-dialog-title>Create Bookmark</h1>
+<div mat-dialog-content>
+  <form [formGroup]="model">
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input
+        required
+        matInput
+        maxlength="100"
+        formControlName="name">
+      <mat-error *ngIf="model.get('name').invalid && model.get('name').touched && model.get('name').errors?.required">This field can't be blank</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>URL</mat-label>
+      <input
+        required
+        matInput
+        [pattern]="urlPattern"
+        maxlength="100"
+        formControlName="url">
+      <mat-error *ngIf="model.get('url').invalid && model.get('url').touched && model.get('url').errors?.pattern">This must be a valid a URL</mat-error>
+      <mat-error *ngIf="model.get('url').invalid && model.get('url').touched && model.get('url').errors?.required">This field can't be blank</mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Group</mat-label>
+      <input type="text"
+             placeholder="Pick one"
+             aria-label="Number"
+             matInput
+             class="_capitalize"
+             formControlName="group"
+             [matAutocomplete]="auto">
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+        <mat-option class="_capitalize" *ngFor="let option of filteredOptions | async" [value]="option">{{option}}</mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button
+    mat-raised-button
+    [disabled]="model.invalid"
+    (click)="create()"
+    color="primary">Create</button>
+  <button mat-button mat-dialog-close>Close</button>
+</div>

@@ -1,0 +1,29 @@
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+body {
+  padding: 52px 0 0;
+  margin: 0;
+  min-width: 320px;
+  overflow-x: auto;
+}
+.app-header {
+  min-width: 320px;
+  overflow-x: auto;
+}
+.container {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 10px;
+}
+a {
+  transition: color .2s ease-out;
+  &:hover {
+    color: #673ab7;
+  }
+}
+._capitalize {
+  text-transform: capitalize;
+}
